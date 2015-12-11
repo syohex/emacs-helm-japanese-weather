@@ -1,11 +1,11 @@
 ;;; helm-japanese-weather.el --- Japanese weather with helm interface
 
-;; Copyright (C) 2014 by Syohei YOSHIDA
+;; Copyright (C) 2015 by Syohei YOSHIDA
 
 ;; Author: Syohei YOSHIDA <syohex@gmail.com>
 ;; URL: https://github.com/syohex/emacs-helm-japanese-weather
 ;; Version: 0.01
-;; Package-Requires: ((helm . "1.56"))
+;; Package-Requires: ((helm-core "1.7.7"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -72,9 +72,9 @@
         (pop-to-buffer (current-buffer))))))
 
 (defvar helm-japanese-weather--source
-  '((name . "Japanese Weather")
-    (candidates . helm-japanese-weather--candidates)
-    (action . (("Show Weather" . helm-japanese-weather--show-weather)))))
+  (helm-build-sync-source "Japanese Weather"
+    :candidates #'helm-japanese-weather--candidates
+    :action '(("Show Weather" . helm-japanese-weather--show-weather))))
 
 ;;;###autoload
 (defun helm-japanese-weather ()
